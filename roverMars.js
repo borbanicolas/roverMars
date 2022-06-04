@@ -11,37 +11,85 @@ class rover {
         this.gridPosition = gridPosition
     }
     
-    newPosition
+
+    //class functions
 
     Move(instruction){
     
         switch(instruction){
             case "N":
-                this.newPosition = this.gridPosition
-                this.newPosition[1]++
-                return this.newPosition
+                this.gridPosition[1]++
+                return this.gridPosition
             case "S":
-                this.newPosition = this.gridPosition
-                this.newPosition[1]--
-                return this.newPosition
+                this.gridPosition[1]--
+                return this.gridPosition
             case "W":
-                this.newPosition = this.gridPosition
-                this.newPosition[0]--
-                return this.newPosition
+                this.gridPosition[0]--
+                return this.gridPosition
             case "E":
-                this.newPosition = this.gridPosition
-                this.newPosition[0]++
+                this.gridPosition[0]++
+                return this.gridPosition
 
         }
-
-                
-                
-            
-          
+      
         
     }
-    
 
+    turnL(instruction){
+        switch(instruction){
+            case  "N":
+                this.direction = "W"
+                break
+            case "W":
+                this.direction = "S"
+                break
+            case "S":
+                this.direction = "E"
+                break
+            case "E":
+                this.direction = "N"
+                break
+
+        }
+    }
+
+    turnR(instruction){
+        switch(instruction){
+            case  "N":
+                this.direction = "E"
+                break
+            case "E":
+                this.direction = "S"
+                break
+            case "S":
+                this.direction = "W"
+                break
+            case "W":
+                this.direction = "N"
+                break
+
+        }
+    }
+
+    instruction(comand){
+       var comando = comand
+       console.log(comando)
+       comand.forEach(element => {
+           switch (element){
+               case "M":
+                    this.Move(this.direction)
+                    break
+               case "L":
+                    this.turnL(this.direction)
+                    break
+                case "R":
+                    this.turnR(this.direction)
+                    break
+           }
+          
+       });
+
+    }
 }
 
 
@@ -49,24 +97,18 @@ class rover {
 
 
 
-function TurnL(instruction) {
-    
-}
-function TurnR(instruction){
 
-}
-
-
-function instruction(instruction){
-
-}
 
 let rover1 = new rover("N", [x = 1, y = 2])
-let rover2 = new rover ("E", [x = 3, y = 2])
+let rover2 = new rover ("E", [x = 3, y = 3])
 
 
-rover1.Move(rover1.direction)
-rover2.Move(rover2.direction)
+comand1 = ['L','M','L','M','L','M','L','M','M']
+comand2 = ['M','M','R','M','M','R','M','R','R','M'] 
 
-
-console.log(rover1.newPosition, rover2.newPosition)
+console.log(rover1)
+rover1.instruction(comand1)
+console.log(rover2)
+rover2.instruction(comand2)
+console.log(rover1)
+console.log(rover2)
