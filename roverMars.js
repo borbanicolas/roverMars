@@ -1,18 +1,11 @@
-// grid x 5 y 5
-//rover x y direction gridPosition
-
-//girar  direction
-//andar gridPosition
-
-
-
 export class rover {
-    constructor(direction, gridPosition = [x,y]){
+    constructor(direction, gridPosition = [x,y], id){
         this.direction = direction
         this.gridPosition = gridPosition
+        this.id = id
     }
 
-    //class functions
+    gridSize = [5,5]
 
     Move(instruction){
     
@@ -70,7 +63,7 @@ export class rover {
     }
 
     instruction(comand){
-       console.log(comand.join(""))
+    //    console.log(comand.join(""))
        comand.forEach(element => {
            switch (element){
                 case "M":
@@ -87,22 +80,8 @@ export class rover {
        });
 
     }
-    gridLimit(grid){
-        let xIsLowerThan0 = grid[0] < 0
-        let yIsLowerThan0 = grid[1] < 0
-        let xIsHigherThan5 = grid[0] > 5
-        let yIsHigherThan5 = grid[1] > 5
-        if(xIsLowerThan0 || yIsLowerThan0 || xIsHigherThan5 || yIsHigherThan5){
-            console.log('vc quebrou a sonda, parabens!')
-            return this.gridPosition = ['broken rover'], this.direction = ''
-        }else{
-            return
-        }
-    }
+    
     
 }
-
-
-export const grid = [5,5]
 
 
