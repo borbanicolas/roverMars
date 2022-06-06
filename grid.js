@@ -4,26 +4,34 @@ export class grid {
     gridLimit(grid){
         let xIsLowerThan0 = grid[0] < 0
         let yIsLowerThan0 = grid[1] < 0
-        let xIsHigherThan5 = grid[0] > 5
-        let yIsHigherThan5 = grid[1] > 5
+        let xIsHigherThan5 = grid[0] > this.size[0]
+        let yIsHigherThan5 = grid[1] > this.size[1]
         if(xIsLowerThan0 || yIsLowerThan0 || xIsHigherThan5 || yIsHigherThan5){
-            console.log('u broke the rover!!!!!!')
-            return this.gridPosition = ['the rover is broke'], this.direction = ''
+            throw 'u broke the rover!!!!!!'
+            
         }else{
             return
         }
     }
     isInRightPlace(grid, id, direction){
-        var gridToString, resultado, rightPlace, Rightdirection
+        let gridToString, resultado,resultDirection, rightPlace, rightDirection
         gridToString = grid.join("")       
         switch(id){
-            case 1:resultado = '13', Rightdirection = 'N'
+            case 1:resultado = '13', resultDirection = 'N'
             break
-            case 2:resultado = '51', Rightdirection = 'E'
+            case 2:resultado = '51', resultDirection = 'E'
         }
-         gridToString.includes(resultado) ? rightPlace = true : console.error('wrong place!')
-         direction.includes(Rightdirection) ? Rightdirection = true : console.error('wrong direction!')
+         gridToString.includes(resultado) ? rightPlace = true : rightPlace = false
+         direction.includes(resultDirection) ? rightDirection = true : rightDirection = false
+            
+         return this.validadePlace(rightPlace, rightDirection)
     }
 
+    validadePlace(rightPlace, rightDirection) {
+        switch (rightPlace && rightDirection) {
+            case true: return
+            case false: throw 'not in right position'
+        }
+    }
 }
 
